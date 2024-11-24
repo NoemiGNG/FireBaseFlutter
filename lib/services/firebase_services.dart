@@ -12,7 +12,14 @@ CollectionReference collectionReferenceUsuarios = db.collection('usuarios');
 QuerySnapshot queryUsuarios = await collectionReferenceUsuarios.get();
 
 queryUsuarios.docs.forEach((documento) {
-usuarios.add(documento.data());
+   final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final person ={
+      "uid": documento.id,
+      "nombre": data['nombre'],
+      "gmail": data['gmail'],
+      "cuenta": data['cuenta'],
+    };
+  usuarios.add(person);
 });
 
 return usuarios;
@@ -27,3 +34,11 @@ Future<void> agregarUsuario(String nNombre, String nEmail, String nCuenta) async
     'cuenta': nCuenta,
   });
 }
+Future<void> editUsuario(String uid, String eNombre, String eMail, String eCuenta) async {
+  await db.collection('usuarios').doc(uid).set({"nombre": eNombre, "gmail": eMail, "cuenta": eCuenta});
+}
+
+Future<void> deleteUsuario(String uid) async {
+  await db.collection('usuarios').doc(uid).delete();
+}
+

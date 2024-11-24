@@ -1,4 +1,5 @@
 import 'package:app_firebase2/pages/add_usuario_page.dart';
+import 'package:app_firebase2/pages/edit_usuario_page.dart';
 import 'package:app_firebase2/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
-        '/add': (context) => const AddUsuario()
+        '/add': (context) => const AddUsuario(),
+         '/edit' : (context) => const EditUsuario(),
       },
     );
   }
